@@ -46,6 +46,7 @@ describe('the auth router', () => {
         .send(testUser)
 
       expect(res.status).toBe(200)
+      expect(res.body.token).toEqual(expect.anything())
       expect(res.body.message).toBe('Welcome testUser')
     })
     it('fails with invalid credentials', async () => {
