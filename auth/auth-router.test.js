@@ -21,6 +21,15 @@ describe('the auth router', () => {
           expect(res.status).toBe(201)
         })
     })
-    it('should return correct object', () => {})
+    it('should return correct object', () => {
+      return request(server)
+        .post('/api/auth/register')
+        .send({ username: 'testUser2', password: 'testPass2' })
+        .then(res => {
+          expect(typeof res.body).toBe('object')
+          expect(res.body.user.username).toBe('testUser2')
+          expect(res.body.token).toEqual(expect.anything())
+        })
+    })
   })
 })
