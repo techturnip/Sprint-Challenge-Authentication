@@ -28,8 +28,33 @@ describe('the auth router', () => {
         .then(res => {
           expect(typeof res.body).toBe('object')
           expect(res.body.user.username).toBe('testUser2')
+          // check if a token exists
           expect(res.body.token).toEqual(expect.anything())
         })
+    })
+  })
+
+  describe('POST /login', () => {
+    it('succeeds with correct credentials', async () => {
+      const testUser = { username: 'testUser', password: 'testPass' }
+      await request(server)
+        .post('/api/auth/register')
+        .send(testUser)
+
+      const res = await request(server)
+        .post('/api/auth/login')
+        .send(testUser)
+
+      expect(res.status).toBe(200)
+      expect(res.body.message).toBe('Welcome testUser')
+    })
+    it('fails with invalid credentials', async () => {
+      const res = await request(server)
+        .post('/api/auth/login')
+        .send({ username: 'wrongUsername', password: 'wrongPassword' })
+
+      expect(res.status).toBe(401)
+      expect(res.body.message).toBe('Invalid Credentials')
     })
   })
 })
