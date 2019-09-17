@@ -40,11 +40,19 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] What is the purpose of using _sessions_?
 
+We can use sessions to create and send a cookie to be stored in the user's client, using the cookie for validation as the user interacts with our application
+
 - [ ] What does bcrypt do to help us store passwords in a secure manner.
+
+We can use bcrypt to run a user's password through a hashing function as a one way encryption
 
 - [ ] What does bcrypt do to slow down attackers?
 
+Because of the one way nature of hashing functions, it is increasingly more difficult for a hacker to 'decrypt' a hashed value like a password
+
 - [ ] What are the three parts of the JSON Web Token?
+
+JWT's consist of a Header, Payload and Signature Verification
 
 ## Minimum Viable Product
 
